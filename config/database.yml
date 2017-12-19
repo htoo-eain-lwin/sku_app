@@ -17,4 +17,6 @@
  production:
    adapter: mysql2
    database: sku_production
-   username: prod
+   username: root
+   password: root
+   host: localhost
