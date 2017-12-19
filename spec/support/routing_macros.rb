@@ -7,15 +7,6 @@ module RoutingMacros
     define_method "api_#{method}" do |path|
       { method.to_sym => "#{url}#{path}" }
     end
-    define_method "apiv2_#{method}" do |path|
-      { method.to_sym => "#{url_v2}#{path}" }
-    end
-    define_method "lite_#{method}" do |path|
-      { method.to_sym => "#{url_lite}#{path}" }
-    end
-    define_method "club_#{method}" do |path|
-      { method.to_sym => "#{url_club}#{path}" }
-    end
   end
 
 end
