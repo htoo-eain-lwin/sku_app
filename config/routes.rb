@@ -1,3 +1,8 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  scope "v1", defaults: {format: :json} do
+    constraints subdomain: 'api' do
+      devise_for :user
+      resources :users, only: [:index, :show], controller: "api/v1/users"
+    end
+  end
 end
