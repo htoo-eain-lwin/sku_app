@@ -23,6 +23,10 @@ describe API::V1, :type => :routing do
       expect(api_get "/products/1.json").
         to route_to( "api/v1/products#show", url_options.merge(id: "1"))
     end
+    it "routes to create" do
+      expect(api_post "/products.json").
+        to route_to( "api/v1/products#create", url_options)
+    end
     it "routes to update" do
       expect(api_put "/products/1.json").
         to route_to( "api/v1/products#update", url_options.merge(id: "1"))
@@ -33,4 +37,15 @@ describe API::V1, :type => :routing do
     end
   end
 
+  describe "#devise" do
+    it "routes to login" do
+      expect(api_post "/login.json").
+        to route_to( "api/v1/sessions#create", url_options)
+    end
+
+    it "routes to logout" do
+      expect(api_delete "/logout.json").
+        to route_to( "api/v1/sessions#destroy", url_options)
+    end
+  end
 end
