@@ -19,6 +19,11 @@ RSpec.describe Inventory, type: :model do
       inventory = FactoryBot.create :inventory, warehouse_id: warehouse.id
       expect(inventory.warehouse).to eq(warehouse)
     end
+    it "has many orders" do
+      inventory = FactoryBot.create :inventory
+      inventory.orders << FactoryBot.create(:order)
+      expect(inventory.orders.empty?).to eq(false)
+    end
   end
 
   describe "validations" do
