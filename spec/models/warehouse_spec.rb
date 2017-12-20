@@ -11,8 +11,14 @@ RSpec.describe Warehouse, type: :model do
   describe "association" do
     it "should belongs to distribution center" do
       distribution = FactoryBot.create :distribution_center
-      warehouse = FactoryBot.create :warehouse,distribution_center_id: distribution.id
+      warehouse = FactoryBot.create :warehouse, distribution_center_id: distribution.id
       expect(warehouse.distribution_center).to eq(distribution)
+    end
+
+    it "has many inventories" do
+      warehouse = FactoryBot.create :warehouse
+      2.times.each{|time| FactoryBot.create :inventory, warehouse_id: warehouse.id}
+      expect(warehouse.inventories.count).to eq(2)
     end
   end
 
@@ -27,4 +33,6 @@ RSpec.describe Warehouse, type: :model do
       expect(warehouse.valid?).to eq(false)
     end
   end
+
+
 end
