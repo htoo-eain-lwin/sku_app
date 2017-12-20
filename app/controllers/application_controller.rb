@@ -6,12 +6,15 @@ class ApplicationController < ActionController::API
   include APIAuthenticatable
   before_action :api_authenticate!
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  rescue_from ActiveRecord::RecordNotFound, with: :object_not_found
 
   private
     def user_not_authorized
-      respond_to do |format|
-        format.json{ render json: {success: false}, status: :unauthorized}
-      end
+      render json: {success: false}, status: :unauthorized
+    end
+
+    def object_not_found
+      render json: {success: false, message: "Object not found" }, status: :not_found
     end
 
   protected
