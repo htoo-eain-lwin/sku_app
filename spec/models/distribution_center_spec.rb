@@ -14,4 +14,12 @@ RSpec.describe DistributionCenter, type: :model do
       expect(dist.valid?).to eq(false)
     end
   end
+
+  describe "associations" do
+    it "has many warehouses" do
+      dist = FactoryBot.create :distribution_center
+      2.times.each{|i| FactoryBot.create :warehouse,distribution_center_id: dist.id}
+      expect(dist.warehouses.count).to eq(2)
+    end
+  end
 end
