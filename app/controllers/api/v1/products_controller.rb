@@ -1,5 +1,4 @@
 class Api::V1::ProductsController < ApplicationController
-  before_action :api_authenticate!
   before_action :set_product, only: [:show,:update,:destroy]
   acts_as_token_authentication_handler_for User, except: [:index, :show]
 
