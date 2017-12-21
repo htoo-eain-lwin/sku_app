@@ -8,6 +8,9 @@
 case Rails.env
 when "development"
   PopulateUsersService.call
+  PopulateProductService.call
   PopulateDistributionCenterService.call
   PopulateWarehousesService.call
+  PopulateInventoryService.call
+  PopulateOrdersService.call
 end
