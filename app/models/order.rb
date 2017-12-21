@@ -6,11 +6,17 @@ class Order < ApplicationRecord
   validates :inventory_id, presence: true
   validates :total, presence: true, numericality: { greater_than: 0 }
   validates :shipping_status, presence: true, inclusion: { in: OrderOptions.status_collection}
+  scope :pending, -> {where(shipping_status: "pending")}
   scope :reserved, -> {where(shipping_status: "reserved")}
   scope :shipped, -> {where(shipping_status: "shipped")}
   scope :cancelled, -> {where(shipping_status: "cancelled")}
 
   after_update :adjustment_inventory, if: :saved_change_to_shipping_status?
+  before_validation :default_shipping_status
+
+  def default_shipping_status
+    self.shipping_status = "pending" unless self.shipping_status
+  end
 
   def adjustment_inventory
     if shipping_status == "cancelled"
