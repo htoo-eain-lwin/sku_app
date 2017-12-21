@@ -8,4 +8,6 @@
 case Rails.env
 when "development"
   PopulateUsersService.call
+  PopulateDistributionCenterService.call
+  PopulateWarehousesService.call
 end
