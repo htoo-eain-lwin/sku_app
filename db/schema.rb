@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171220193539) do
+ActiveRecord::Schema.define(version: 20171220083559) do
 
   create_table "api_tokens", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", null: false
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(version: 20171220193539) do
     t.integer "inventory_id", null: false
     t.integer "total", null: false
     t.string "shipping_status"
+    t.integer "customer_id", null: false
+    t.integer "sales_person_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
