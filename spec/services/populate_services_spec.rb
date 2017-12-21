@@ -51,3 +51,9 @@ describe PopulateOrdersService do
     expect { described_class.call}.not_to raise_error
   end
 end
+
+describe PopulateApiTokenService do
+  it 'exists as a class' do
+    expect { described_class.call}.not_to raise_error
+  end
+end
