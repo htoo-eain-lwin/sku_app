@@ -60,6 +60,29 @@ describe API::V1, :type => :routing do
     end
   end
 
+  describe "inventories" do
+    it "routes to index" do
+      expect(api_get "/inventories.json").
+        to route_to( "api/v1/inventories#index", url_options)
+    end
+    it "routes to show" do
+      expect(api_get "/inventories/1.json").
+        to route_to( "api/v1/inventories#show", url_options.merge(id: "1"))
+    end
+    it "routes to create" do
+      expect(api_post "/inventories.json").
+        to route_to( "api/v1/inventories#create", url_options)
+    end
+    it "routes to update" do
+      expect(api_put "/inventories/1.json").
+        to route_to( "api/v1/inventories#update", url_options.merge(id: "1"))
+    end
+    it "routes to destroy" do
+      expect(api_delete "/inventories/1.json").
+        to route_to( "api/v1/inventories#destroy", url_options.merge(id: "1"))
+    end
+  end
+
   describe "#devise" do
     it "routes to login" do
       expect(api_post "/login.json").
