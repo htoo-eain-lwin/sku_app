@@ -37,4 +37,18 @@ RSpec.describe Order, type: :model do
       expect(order.valid?).to eq(false)
     end
   end
+
+  describe "callbacks" do
+    it "called adjustment only shipping_status changed" do
+      order = FactoryBot.create :order
+      expect(order).to receive(:adjustment_inventory).and_return(true)
+      order.update(shipping_status: "cancelled")
+    end
+
+    it "doesnt called adjustment if shipping_status not changed" do
+      order = FactoryBot.create :order
+      expect(order).not_to receive(:adjustment_inventory)
+      order.update(total: 11)
+    end
+  end
 end
