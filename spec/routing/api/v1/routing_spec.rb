@@ -83,6 +83,28 @@ describe API::V1, :type => :routing do
     end
   end
 
+  describe "orders" do
+    it "routes to index" do
+      expect(api_get "/orders.json").
+        to route_to( "api/v1/orders#index", url_options)
+    end
+    it "routes to show" do
+      expect(api_get "/orders/1.json").
+        to route_to( "api/v1/orders#show", url_options.merge(id: "1"))
+    end
+    it "routes to create" do
+      expect(api_post "/orders.json").
+        to route_to( "api/v1/orders#create", url_options)
+    end
+    it "routes to update" do
+      expect(api_put "/orders/1.json").
+        to route_to( "api/v1/orders#update", url_options.merge(id: "1"))
+    end
+    it "routes to destroy" do
+      expect(api_delete "/orders/1.json").
+        to route_to( "api/v1/orders#destroy", url_options.merge(id: "1"))
+    end
+  end
   describe "#devise" do
     it "routes to login" do
       expect(api_post "/login.json").

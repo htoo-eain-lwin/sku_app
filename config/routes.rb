@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :products, controller: "api/v1/products"
       resources :warehouses, controller: "api/v1/warehouses"
       resources :inventories, controller: "api/v1/inventories"
+      resources :orders, controller: "api/v1/orders"
       devise_scope :user do
         post "/login", to: "api/v1/sessions#create"
         delete "/logout", to: "api/v1/sessions#destroy"
