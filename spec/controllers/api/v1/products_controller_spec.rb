@@ -9,7 +9,7 @@ describe Api::V1::ProductsController, :type => :controller do
 
   describe "#index" do
     it "give all products" do
-      product = FactoryBot.create(:product)
+      FactoryBot.create(:product)
       get :index, params: {format: :json}
       expect(response).to  have_http_status(200)
     end
