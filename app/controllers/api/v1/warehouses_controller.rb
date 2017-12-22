@@ -18,6 +18,7 @@ class Api::V1::WarehousesController < ApplicationController
       data: {
         name: @warehouse.name,
         distribution_center_id: @warehouse.distribution_center_id,
+        inventories: @warehouse.inventories
         }
       },status: 200
   end
