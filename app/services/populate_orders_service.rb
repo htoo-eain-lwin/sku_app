@@ -3,7 +3,7 @@ class PopulateOrdersService
     Order.destroy_all
     20.times.each do |i|
       Order.create(
-        inventory_id: rand(1..30),
+        inventory_id: Inventory.pluck(:id).sample,
         total: rand(1..3),
         shipping_status: "pending",
         customer_id: Customer.pluck(:id).sample,
