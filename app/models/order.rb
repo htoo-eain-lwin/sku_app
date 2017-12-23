@@ -19,9 +19,9 @@ class Order < ApplicationRecord
   end
 
   def adjustment_inventory
-    if shipping_status == "cancelled"
+    if  shipping_status_before_last_save != "pending" && shipping_status == "cancelled"
       AdjustmentInventory.new.refill(self)
-    else
+    elsif shipping_status == "reserved" || shipping_status == "shipped"
       AdjustmentInventory.new.reduce(self)
     end
   end
